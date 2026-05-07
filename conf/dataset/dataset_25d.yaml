@@ -1,0 +1,5 @@
+_target_: src.datasets.dataset_25d.Dataset25D
+split: training
+k_slices: 5  # Number of adjacent slices (must be odd: 3, 5, 7, etc.)
+orientation: sagittal  # 'sagittal', 'axial', or 'coronal'
+transforms: null

@@ -1,0 +1,21 @@
+_target_: datasets.denoising_dataset_monai.trainDataset  # Explicit train class
+args:
+  trainPhase: true
+  jsonData: "json_datasets/Saggital_k_fold_1_val.json"
+  useCachedDS: false
+  dataKeys: ['input', 'target']
+  collate_batch: "pad_list_data_collate"
+  defaultTransforms: {}
+  filename: null
+  filenameVal: null
+  test: false
+  segmentation: false
+  padToLog2: false
+  keyTest: "test"
+  transforms:
+    LoadImaged:
+      keys: ['input','target']
+      ensure_channel_first: true
+    # Transposed:
+    #   keys: ['input','target']
+    #   indices: [0,2,1]

@@ -1,0 +1,42 @@
+# Core Deep Learning
+torch>=2.0.0
+torchvision>=0.15.0
+
+# Medical Imaging
+monai>=1.3.0
+pydicom>=2.4.0
+SimpleITK>=2.3.0
+
+# Configuration and Logging
+hydra-core>=1.3.0
+omegaconf>=2.3.0
+wandb>=0.15.0
+
+# Metrics and Evaluation
+torchmetrics>=1.0.0
+
+# Neural Network Components
+timm>=0.9.0
+einops>=0.7.0
+
+# Image Processing
+opencv-python>=4.8.0
+scikit-image>=0.21.0
+Pillow>=10.0.0
+scipy>=1.11.0
+numpy>=1.24.0
+
+# Data and Visualization
+pandas>=2.0.0
+matplotlib>=3.7.0
+
+# Utilities
+tqdm>=4.65.0
+pathlib2>=2.3.7
+pyyaml>=6.0
+
+# Optional: For specific features
+# modopt  # For MRI reconstruction (if needed)
+# pysap  # For MRI reconstruction (if needed)
+# sqlalchemy>=2.0.0  # For database features (if needed)
+thop>=0.1.1  # For model profiling

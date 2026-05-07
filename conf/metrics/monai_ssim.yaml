@@ -1,0 +1,6 @@
+_target_: monai.metrics.SSIMMetric
+data_range: 1.0
+win_size: 7
+k1: 0.01
+k2: 0.03
+spatial_dims: 2

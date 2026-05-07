@@ -1,0 +1,10 @@
+_target_: metrics.MetricCollection
+psnr:
+  _target_: metrics.AutoRangePSNR
+  # Auto-detects data range - works for both 2D and 3D
+ssim:
+  _target_: metrics.AutoRangeSSIM3D
+  spatial_dims: 3  # 3D volumes
+  kernel_type: "gaussian"
+  win_size: 11
+  reduction: "mean"

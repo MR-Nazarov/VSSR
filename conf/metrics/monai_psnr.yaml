@@ -1,0 +1,2 @@
+_target_: monai.metrics.PSNRMetric
+max_val: 1.0

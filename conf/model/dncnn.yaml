@@ -1,0 +1,7 @@
+_target_: src.networks.DnCNN.DnCNN
+num_layers: 10
+n_channels: 64
+image_channels: 1
+use_bnorm: false
+kernel_size: 3
+dropout_rate: 0.0

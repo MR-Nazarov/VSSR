@@ -1,0 +1,7 @@
+_target_: metrics.MetricCollection
+psnr:
+  _target_: metrics.AutoRangePSNR
+  # Auto-detects data range like your original implementation
+ssim:
+  _target_: torchmetrics.image.StructuralSimilarityIndexMeasure
+  # Auto-detects data range

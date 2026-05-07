@@ -1,0 +1,2 @@
+_target_: monai.losses.L1Loss
+reduction: 'mean'

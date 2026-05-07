@@ -1,0 +1,9 @@
+# Transfer learning - load model but reset optimizer/scheduler
+path: null
+load_model: true
+load_optimizer: false        # Start fresh optimizer
+load_scheduler: false        # Start fresh scheduler
+load_epoch: false           # Start from epoch 0
+load_metrics: false
+strict_loading: false       # Allow missing keys for different architectures
+map_location: null

@@ -1,0 +1,14 @@
+path: null
+load_model: true
+load_optimizer: false
+load_scheduler: false
+load_epoch: false
+load_metrics: false
+strict_loading: true
+map_location: null
+
+# Default naming for finding models
+storage:
+  model_dir: "models"
+naming:
+  best_model_name: "best_model.pth"

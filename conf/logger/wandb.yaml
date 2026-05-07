@@ -1,0 +1,9 @@
+_target_: wandb.init
+project: ${project_name}
+name: null                # Will be set dynamically if needed
+config: null              # Will be set to full config
+entity: null              
+tags: []
+notes: ""
+mode: "online"
+dir: null                 # Use current directory (Hydra output)

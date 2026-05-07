@@ -1,0 +1,59 @@
+defaults:
+  - model: null
+  - optimizer: adam
+  - logger: wandb
+  - dataset@dataset_train: denoising_train
+  - dataset@dataset_test: denoising_test
+  - metrics: basic
+  - checkpoint: none          # No checkpoint loading by default
+  - dataloader@dataloader_train: train       # Uses train.yaml
+  - dataloader@dataloader_eval: eval # Uses eval.yaml
+  - scheduler: none
+  - _self_
+
+modelName: "default_model"
+device: cuda
+seed: 42
+DataParallel: false
+num_epochs: 100
+batchSize: 1
+Inference: false
+
+# WandB image logging
+log_images_wandb: false
+log_images_freq: 1  # Log images every N epochs
+
+project_name: "VSSR"
+# Target configuration
+hasTarget: true       # Explicit target configuration
+baseTargetPath: null
+keyTest: "test"
+
+use_validation: true
+Train: true
+test: false
+
+learningRate: 0.001
+save_every: 1
+conf: "default_config"
+loadCheckpoint: true
+
+checkpoint:
+  storage:
+    checkpoint_dir: "checkpoints"
+    model_dir: "models"
+  naming:
+    checkpoint_prefix: "checkpoint"
+    best_model_name: "best_model.pth"
+    latest_name: "latest.pth"
+    final_name: "final_model.pth"
+  save_frequency:
+    save_every_n_epochs: 10
+    save_best: true
+    save_latest: true
+    save_final: true
+    keep_last_n: 5
+
+# Training settings
+resume_training: false
+start_epoch: 0

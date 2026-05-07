@@ -1,0 +1,19 @@
+# Standard checkpoint storage configuration
+storage:
+  checkpoint_dir: "checkpoints"           # Directory name within Hydra output
+  model_dir: "models"                     # Directory for final/best models
+
+# Standard naming conventions
+naming:
+  checkpoint_prefix: "checkpoint"         # checkpoint_epoch_045.pth
+  best_model_name: "best_model.pth"      # Always the same name for best
+  latest_name: "latest.pth"              # Always the same name for latest
+  final_name: "final_model.pth"          # Final model at end of training
+
+# Checkpoint saving frequency
+save_frequency:
+  save_every_n_epochs: 10                # Save checkpoint every N epochs
+  save_best: true                        # Always save best model
+  save_latest: true                      # Always maintain latest checkpoint
+  save_final: true                       # Save final model at end
+  keep_last_n: 5                        # Keep only last N regular checkpoints

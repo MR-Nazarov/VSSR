@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Data & results (never commit large files)
+data/
+intermediate_data/
+json_datasets/
+checkpoints/
+test_results/
+evaluation_results/
+visualization_results/
+*.nii
+*.nii.gz
+*.dcm
+*.npy
+*.npz
+*.h5
+*.hdf5
+
+# Hydra outputs
+outputs/
+multirun/
+.hydra/
+
+# Weights & Biases
+wandb/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Model weights
+*.pth
+*.pt
+*.ckpt
+*.safetensors

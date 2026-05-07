@@ -1,0 +1,18 @@
+_target_: datasets.denoising_dataset_monai.testDataset   # Explicit test class
+args:
+  trainPhase: false
+  jsonData: "json_datasets/Saggital_k_fold_1_val.json"
+  useCachedDS: false
+  dataKeys: ['input', 'target']
+  collate_batch: "pad_list_data_collate"
+  defaultTransforms: {}
+  filename: null
+  filenameVal: null
+  test: true
+  segmentation: false
+  padToLog2: false
+  keyTest: "test"
+  transforms:
+    LoadImaged:
+      keys: ['input','target']
+      ensure_channel_first: true

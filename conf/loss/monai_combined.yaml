@@ -1,0 +1,19 @@
+_target_: losses.CombinedLoss
+losses:
+  l1:
+    _target_: monai.losses.L1Loss
+    reduction: 'mean'
+  ssim:
+    _target_: monai.losses.SSIMLoss
+    win_size: 7
+    spatial_dims: 2
+    data_range: 1.0
+  perceptual:
+    _target_: monai.losses.PerceptualLoss
+    spatial_dims: 2
+    network_type: "vgg"
+    pretrained: true
+weights:
+  l1: 0.3
+  ssim: 0.4
+  perceptual: 0.3
