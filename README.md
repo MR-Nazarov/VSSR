@@ -96,6 +96,23 @@ python generate_intermediate_data.py --experiment ASC_8x --stage 1
 
 ---
 
+## Pre-trained Weights
+
+Pre-trained models are hosted on HuggingFace:
+
+> **[MR-Nazarov/VSSR on HuggingFace](https://huggingface.co/MR-Nazarov/VSSR)** *(coming soon)*
+
+Download and place checkpoints under `models/`:
+
+```
+models/
+├── vssr_stage1.pth
+├── vssr_stage2.pth
+└── vssr_stage3.pth
+```
+
+---
+
 ## Training
 
 All experiments are configured with [Hydra](https://hydra.cc/). To train the full VSSR pipeline (ASC ordering: Axial → Sagittal → Coronal):
