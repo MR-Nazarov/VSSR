@@ -10,9 +10,33 @@
 
 VSSR is a post-reconstruction refinement framework for accelerated MRI. Rather than treating volumetric reconstruction as a single-model problem, VSSR decomposes it into a cascade of three view-specialized expert networks — each dedicated to one anatomical plane (sagittal, axial, coronal) — that refine the volume sequentially. Each expert corrects the residual artifacts left by the previous stage, exploiting the complementary information available along orthogonal planes.
 
-<p align="center">
-  <img src="assets/method_overview.png" width="800" alt="VSSR pipeline overview"/>
-</p>
+```
+ Undersampled MRI (e.g. 8× acceleration)
+          │
+          ▼
+ ┌─────────────────────┐
+ │  Expert 1           │  2D network operating on sagittal slices
+ │  (Sagittal plane)   │  Learns to remove aliasing artifacts along x
+ └─────────────────────┘
+          │  refined volume
+          ▼
+ ┌─────────────────────┐
+ │  Expert 2           │  2D network operating on axial slices
+ │  (Axial plane)      │  Learns residual artifacts invisible to Expert 1
+ └─────────────────────┘
+          │  further refined volume
+          ▼
+ ┌─────────────────────┐
+ │  Expert 3           │  2D network operating on coronal slices
+ │  (Coronal plane)    │  Final cross-plane consistency enforcement
+ └─────────────────────┘
+          │
+          ▼
+ High-quality 3D reconstruction
+```
+
+Each expert is trained on the actual input distribution it will receive at test time,
+eliminating the covariate shift that degrades independently trained cascades.
 
 ### Key Contributions
 
