@@ -160,20 +160,6 @@ Outputs are saved as `.nii.gz` files with the original affine and header metadat
 
 ---
 
-## Results
-
-| Method | PSNR (dB) | SSIM |
-|---|---|---|
-| Zero-filled (8×) | — | — |
-| Single expert – Sagittal | — | — |
-| Single expert – Axial | — | — |
-| Single expert – Coronal | — | — |
-| VSSR (Ours) | — | — |
-
-*Results on IXI test set, 8× acceleration. Full results in the paper.*
-
----
-
 ## Repository Structure
 
 ```

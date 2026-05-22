@@ -1,0 +1,94 @@
+# @package _global_
+# ACS cascade (clean) — Step 3: Train sagittal expert on coronal-derived inputs
+defaults:
+  - /loss: l1
+  - override /model: SUNet
+  - override /optimizer: adamw
+  - override /metrics: basic
+  - override /scheduler: cosine
+  - override /logger: wandb
+
+num_epochs: 200
+device: cuda
+seed: 42
+test: false
+resume_from: null
+
+use_validation: true
+use_metrics: true
+use_scheduler: true
+show_progress: true
+use_mixed_precision: false
+
+grad_clip: 1.0
+
+checkpoint_freq: 1
+save_last_checkpoint: true
+cleanup_checkpoints: true
+max_checkpoints_keep: 5
+best_metric: "ssim"
+best_metric_mode: "max"
+
+early_stopping: false
+early_stopping_patience: 15
+early_stopping_min_delta: 1e-4
+
+save_test_inputs: false
+save_test_visualizations: false
+num_vis_samples: 3
+
+log_images_wandb: true
+log_images_freq: 1
+
+timing_samples: 3
+DataParallel: false
+hasTarget: true
+
+model:
+  img_size: [256, 256]
+
+optimizer:
+  lr: 1e-4
+  weight_decay: 1e-5
+
+scheduler:
+  T_max: 200
+  eta_min: 1e-6
+
+dataset_train:
+  args:
+    jsonData: "json_datasets/Multi_view/SUNet_ACS_sagittal_from_coronal_8x.json"
+    transforms:
+      LoadImaged:
+        keys: ['input', 'target']
+        ensure_channel_first: true
+      SqueezeDimd:
+        keys: ['input', 'target']
+        dim: -1
+        update_meta: false
+      ToTensord:
+        keys: ['input', 'target']
+        track_meta: false
+
+dataset_test:
+  args:
+    jsonData: "json_datasets/Multi_view/SUNet_ACS_sagittal_from_coronal_8x.json"
+    transforms:
+      LoadImaged:
+        keys: ['input', 'target']
+        ensure_channel_first: true
+      SqueezeDimd:
+        keys: ['input', 'target']
+        dim: -1
+        update_meta: false
+      ToTensord:
+        keys: ['input', 'target']
+        track_meta: false
+
+dataloader_train:
+  batch_size: 16
+
+dataloader_eval:
+  batch_size: 32
+
+experiment_name: "SUNet_ACS_sagittal_from_coronal_8x"

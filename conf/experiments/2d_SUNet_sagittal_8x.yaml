@@ -1,0 +1,104 @@
+# @package _global_
+defaults:
+  - /loss: l1
+  - override /model: SUNet
+  - override /optimizer: adamw
+  - override /metrics: basic
+  - override /scheduler: cosine
+  - override /logger: wandb
+
+# Training settings
+num_epochs: 200
+device: cuda
+seed: 42
+test: false
+resume_from: null  # Set to checkpoint path to resume training
+
+# Training behavior
+use_validation: true
+use_metrics: true
+use_scheduler: true
+show_progress: true
+use_mixed_precision: false
+
+# Gradient settings
+grad_clip: 1.0
+
+# Checkpoint settings
+checkpoint_freq: 1
+save_last_checkpoint: true
+cleanup_checkpoints: true
+max_checkpoints_keep: 5
+best_metric: "ssim"        # Options: "val_loss", "psnr", "ssim", "train_loss"
+best_metric_mode: "max"        # "min" for loss, "max" for PSNR/SSIM
+
+# Early stopping
+early_stopping: false
+early_stopping_patience: 15
+early_stopping_min_delta: 1e-4
+
+# Testing settings
+save_test_inputs: false
+save_test_visualizations: false
+num_vis_samples: 3
+
+# WandB image logging
+log_images_wandb: true
+log_images_freq: 1  # Log images every N epochs
+
+# Other settings
+timing_samples: 3
+DataParallel: false
+hasTarget: true
+
+# Optimizer settings
+optimizer:
+  lr: 1e-4          # Override learning rate
+  weight_decay: 1e-5  # Override weight decay
+
+# Scheduler settings
+scheduler:
+  T_max: 200
+  eta_min: 1e-6
+
+# Dataset settings
+dataset_train:
+  args:
+    jsonData: "json_datasets/fixed/Multi_view_IXI_sagittal_8x.json"  # Override JSON file for training
+    transforms:
+      LoadImaged:
+        keys: ['input', 'target']
+        ensure_channel_first: true
+      SqueezeDimd:
+        keys: ['input', 'target']
+        dim: -1  # Remove the last dimension (depth=1)
+        update_meta: false  # Don't try to update affine automatically
+      ToTensord:
+        keys: [ 'input', 'target' ]
+        track_meta: false  # Remove metadata including affine to avoid warnings
+
+dataset_test:
+  args:
+    jsonData: "json_datasets/fixed/Multi_view_IXI_sagittal_8x.json"   # Override JSON file for validation
+    transforms:
+      LoadImaged:
+        keys: ['input', 'target']
+        ensure_channel_first: true
+      SqueezeDimd:
+        keys: ['input', 'target']
+        dim: -1  # Remove the last dimension (depth=1)
+        update_meta: false  # Don't try to update affine automatically
+      ToTensord:
+        keys: [ 'input', 'target' ]
+        track_meta: false  # Remove metadata including affine to avoid warnings
+
+
+# Dataloader settings
+dataloader_train:
+  batch_size: 16  # Override batch size for training
+
+dataloader_eval:
+  batch_size: 32  # Override batch size for evaluation
+
+# Project settings
+experiment_name: "2d_SUNet_sagittal_8x_new"
