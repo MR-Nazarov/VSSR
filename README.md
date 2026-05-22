@@ -106,9 +106,9 @@ Download and place checkpoints under `models/`:
 
 ```
 models/
-├── vssr_stage1.pth
-├── vssr_stage2.pth
-└── vssr_stage3.pth
+├── vssr_stage1_sagittal.pth
+├── vssr_stage2_axial.pth
+└── vssr_stage3_coronal.pth
 ```
 
 ---
