@@ -100,7 +100,7 @@ python generate_intermediate_data.py --experiment ASC_8x --stage 1
 
 Pre-trained models are hosted on HuggingFace:
 
-> **[MR-Nazarov/VSSR on HuggingFace](https://huggingface.co/MR-Nazarov/VSSR)** *(coming soon)*
+> **[Lexer1/VSSR on HuggingFace](https://huggingface.co/Lexer1/VSSR)**
 
 Download and place checkpoints under `models/`:
 
